@@ -125,6 +125,12 @@
     text-align: start;
 }
 
+/* The edit composers show their autocomplete / formatting bar outside their own box,
+   so they must not be clipped. */
+.slotBody > *:has(:global(.mx_EditMessageComposer), :global(.mx_EditWysiwygComposer)) {
+    overflow: visible;
+}
+
 .slotAvatar {
     cursor: pointer;
     user-select: none;

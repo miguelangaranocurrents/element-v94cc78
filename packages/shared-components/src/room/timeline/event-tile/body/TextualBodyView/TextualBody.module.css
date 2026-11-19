@@ -41,6 +41,11 @@
     display: flex;
 }
 
+.annotated > :first-child {
+    /* Let the body shrink below its content width so wide code blocks scroll instead of widening the body */
+    min-width: 0;
+}
+
 .annotatedInline {
     display: inline-flex;
 }

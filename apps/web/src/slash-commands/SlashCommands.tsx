@@ -57,6 +57,7 @@ import { MatrixClientPeg } from "../MatrixClientPeg";
 import { isCurrentLocalRoom, reject, singleMxcUpload, success, successSync, splitAtFirstSpace } from "./utils";
 import { deop, op } from "./op";
 import { CommandCategories } from "./interface";
+import Markdown from "../Markdown";
 import { Command } from "./command";
 import { goto, join } from "./join";
 import { manuallyVerifyDevice } from "../components/views/dialogs/ManualDeviceKeyVerificationDialog";
@@ -73,7 +74,8 @@ export const Commands = [
         args: "<message>",
         description: _td("slash_command|spoiler"),
         runFn: function (cli, roomId, threadId, message = "") {
-            return successSync(ContentHelpers.makeHtmlMessage(message, `<span data-mx-spoiler>${message}</span>`));
+            const html = new Markdown(message).toHTML();
+            return successSync(ContentHelpers.makeHtmlMessage(message, `<span data-mx-spoiler>${html}</span>`));
         },
         category: CommandCategories.messages,
     }),
